@@ -29,11 +29,16 @@ initialiserGrille(): void {
     }
   }
 }
-
-
-
-
-
-
-
+// Lien d'aide pour cette partie = https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// Placer les bateaux aléatoirement
+placerBateaux(): void {
+    while (this.bateaux.length < this.nbBateaux) {
+        const x = Math.floor(Math.random() * this.taille);
+        const y = Math.floor(Math.random() * this.taille);
+        // Verifier si aucun bateaux n'est existant a cette case
+        if(!this.bateaux.some(b => b.x === x && b.y === y)) {
+            this.bateaux.push({x, y });
+        }
+    }
+}
 }
