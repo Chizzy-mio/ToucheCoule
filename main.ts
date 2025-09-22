@@ -98,4 +98,14 @@ afficherGrille(): void {
     }
     console.log(`Essais : ${this.essais}/${this.maxEssais}`);
 }
+// On gagne la partie quand tous les bateaux ont été trouvé, donc si il restent 0 bateaux a trouvé
+// Donc Boolean car si cette condition est VRAI alors on applique la variable
+victoire(): boolean {
+    return this.bateaux.length === 0;
+}
+
+estValide(x: number, y:number): boolean {
+    return x >= 0 && x < this.taille && y >= 0 && y < this.taille;
+}
+
 }
