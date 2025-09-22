@@ -64,4 +64,38 @@ tirer(x: number, y:number): string {
         return "🌊 Manqué...";
     }
 }
+
+
+/* La partie se termine quand les conditions suivantes sont atteinte : 
+    - Le nombre d'essaie MAX 
+    - Tous les bateaux sont touché
+*/
+partieTermine(): boolean {
+    return this.essais >= this.maxEssais || this.bateaux.length === 0;
+}
+
+// On affiche la "table" de jeux aifn d'y voir plus clair
+afficherGrille(): void {
+    console.log("\nGrille :");
+
+    // J'ai demander a CHATGPT pour qu'il me mette des repère sur la grille pour savoir ou choisir la case
+    // En-tête : numéros de colonnes
+    let header = "   "; // espace pour l’index des lignes
+        for (let j = 0; j < this.taille; j++) {
+            header += ` ${j.toString().padStart(2, " ")} `;
+    }
+    console.log(header);
+
+    // En fonction de la taille de la grille, alors fait autant de case
+    for (let i = 0; i < this.taille; i++) {
+        let ligne = `${i} |`; // numéro de ligne
+        for (let j= 0; j < this.taille; j++) {
+            // On met les guillement a l'envert (` `) car sinon, les symbole "" ou '' vont apparaitre la variable en commentaire
+            ligne += ` ${this.grille[i][j]} |`;
+        }
+        // On affiche "|"
+        console.log(ligne);
+    }
+    console.log(`Essais : ${this.essais}/${this.maxEssais}`);
+}
 }
