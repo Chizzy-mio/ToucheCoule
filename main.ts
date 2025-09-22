@@ -41,4 +41,27 @@ placerBateaux(): void {
         }
     }
 }
+
+// Effectuer un tir
+tirer(x: number, y:number): string {
+    // Si le nombre d'essaie max est atteint, alors " "
+    if (this.essais >= this.maxEssais) return "❌ Limite d'essais atteinte";
+    // Si la case ne correspond pas a X ou Y, alors " "
+    if(!this.estValide(x,y)) return "⚠️ Coordonées invalides";
+    // Si l'emplacement choisi est égal a X ou Y, alors " "
+    if(this.grille[y][x] !== " ") return "⚠️ CAse déja jouée";
+
+    this.essais++;
+
+    // Si on clique sur une case, on met "X" ou "o" en fonction des conditions
+    const touche = this.bateaux.find(b => b.x === x && b.y === y);
+    if (touche) {
+        this.grille[y][x] = "X";
+        this.bateaux = this.bateaux.filter(b => !(b.x === x && b.y === y));
+        return "🎯 Touché !";
+    } else {
+        this.grille[y][x] = "o";
+        return "🌊 Manqué...";
+    }
+}
 }
